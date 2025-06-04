@@ -149,7 +149,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1998274356129707256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb6f3a6d1b1c3f7438c968bdb4d1ecf6, type: 3}
+  m_Script: {fileID: 11500000, guid: fc6f8b8e832c92d40a882d7f39bcab44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   goldCoin: {fileID: 5275982861252646101, guid: a4703d78c1ac8174a9610f5ad4c0de93, type: 3}

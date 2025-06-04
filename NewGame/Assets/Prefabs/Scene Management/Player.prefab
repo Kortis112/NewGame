@@ -146,7 +146,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -75224854, guid: 478a100d121726e43b8030f7be703933, type: 3}
+  m_Sprite: {fileID: 5903502503364988697, guid: 9a808caf3c4bf4f4b8eaa7bada8edfa9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -256,9 +256,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.027201125, y: -0.05817342}
-  m_Size: {x: 0.58598113, y: 0.42048383}
-  m_Direction: 1
+  m_Offset: {x: -0.027201116, y: -0.20284283}
+  m_Size: {x: 0.58598113, y: 1.1140358}
+  m_Direction: 0
 --- !u!210 &6663458067777651693
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -406,7 +406,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Time: 0.15
-  m_PreviewTimeScale: 0
+  m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -586,14 +586,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.8733084, y: -0.16328189}
-      - {x: 1.7644873, y: 0.95524234}
-      - {x: 1.1819369, y: 1.4296051}
-      - {x: 0.11231667, y: 1.6564342}
-      - {x: 0.5200464, y: 0.7981585}
+    - - {x: 3.432059, y: -0.124337584}
+      - {x: 3.0066729, y: 1.3766984}
+      - {x: 2.3591194, y: 1.8889213}
+      - {x: 1.0044816, y: 2.1394258}
+      - {x: -0.34817785, y: 1.5195304}
+      - {x: 0.14667237, y: -0.34685487}
       - {x: -0.25152528, y: -1.3314476}
-      - {x: 0.7855544, y: -0.9761049}
-      - {x: 1.5132244, y: -0.5918038}
+      - {x: 0.82399446, y: -2.333107}
+      - {x: 2.707328, y: -1.612265}
   m_UseDelaunayMesh: 0
 --- !u!114 &391568095245679848
 MonoBehaviour:

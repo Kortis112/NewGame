@@ -70,6 +70,7 @@ public class ActiveInventory : Singleton<ActiveInventory>
 
 
         GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform);
+        PlayerController.Instance.ApplyAppearance(weaponInfo.playerAnimator);
 
         //ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
         //newWeapon.transform.parent = ActiveWeapon.Instance.transform;

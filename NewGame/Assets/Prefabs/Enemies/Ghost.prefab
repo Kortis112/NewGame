@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 7175709707996932175}
   - component: {fileID: 8513748347415033440}
   - component: {fileID: 6435950746199852736}
-  - component: {fileID: -5391190584211731713}
+  - component: {fileID: 8401977970208248938}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -368,7 +368,7 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
---- !u!114 &-5391190584211731713
+--- !u!114 &8401977970208248938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8024456172307069290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb6f3a6d1b1c3f7438c968bdb4d1ecf6, type: 3}
+  m_Script: {fileID: 11500000, guid: fc6f8b8e832c92d40a882d7f39bcab44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   goldCoin: {fileID: 5275982861252646101, guid: a4703d78c1ac8174a9610f5ad4c0de93, type: 3}

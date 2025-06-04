@@ -123,4 +123,8 @@ public class PlayerController : Singleton<PlayerController>
         yield return new WaitForSeconds(dashCD);
         isDashing = false;
     }
+    public void ApplyAppearance(RuntimeAnimatorController ctrl)
+    {
+        if (ctrl != null) myAnimator.runtimeAnimatorController = ctrl;
+    }
 }
