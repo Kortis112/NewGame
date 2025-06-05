@@ -20,4 +20,10 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
         if (PersistBetweenScenes && !transform.parent)
             DontDestroyOnLoad(gameObject);
     }
+    protected virtual void OnDestroy()
+    {
+        if (instance == this)               // объект, который удаляется, и есть синглтон
+            instance = null;                // ← обнуляем приватное поле
+    }
+
 }

@@ -1,13 +1,29 @@
+using Game.Systems;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject pauseCanvas;
+    private bool paused;
+
+    private void Update()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame) TogglePause();
+    }
 
     public void TogglePause()
     {
-        bool nowPaused = Time.timeScale == 0;
-        Time.timeScale = nowPaused ? 1 : 0;
-        pausePanel.SetActive(!nowPaused);
+        paused = !paused;
+        pauseCanvas.SetActive(paused);
+        Time.timeScale = paused ? 0f : 1f;
+    }
+
+    public void QuitToMenu()
+    {
+        Time.timeScale = 1f;
+        RunData.goldRun = 0;
+        SceneManager.LoadScene("MainMenu");
     }
 }

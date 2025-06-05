@@ -24,6 +24,10 @@ public class WinScreenUI : MonoBehaviour
     public void Retry()
     {
         RunData.goldRun = 0;
+        RunData.hpCur = 0;
+        RunData.hpMax = 0;
+        RunData.staminaCur = 0;
+        RunData.activeSlot = 0;
         RunData.runFinished = false;
         SceneManager.LoadScene("Fight1");
     }

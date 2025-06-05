@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Game.Systems;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -13,6 +14,17 @@ public class MainMenuController : MonoBehaviour
         runsText.text = $"Runs total: {PlayerPrefs.GetInt("RunsTotal",0)}";
     }
 
-    public void StartGame() => SceneManager.LoadScene("Fight1");   // первый бой
+    public void StartGame()
+    {
+        // очистить состояние прошлого забега
+        RunData.goldRun = 0;
+        RunData.hpCur = 0;
+        RunData.hpMax = 0;
+        RunData.staminaCur = 0;
+        RunData.activeSlot = 0;
+
+        SceneManager.LoadScene("Fight1");
+    }   // первый бой
     public void QuitGame()  => Application.Quit();
+
 }

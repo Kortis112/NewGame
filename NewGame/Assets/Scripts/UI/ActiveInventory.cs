@@ -1,70 +1,68 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Game.Systems;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ActiveInventory : Singleton<ActiveInventory>
 {
-    private int activeSlotIndexNum = 0;
+    protected override bool PersistBetweenScenes => false;
+
+    private int activeSlotIndexNum;
 
     private PlayerControls playerControls;
-    protected override bool PersistBetweenScenes => false;
+    private InputAction hotkeyAction;
+
     protected override void Awake()
     {
         base.Awake();
-
         playerControls = new PlayerControls();
+        hotkeyAction = playerControls.Inventory.Keyboard;
     }
+
+    private void OnEnable() => playerControls.Enable();
+    private void OnDisable() => playerControls.Disable();
 
     private void Start()
     {
-        activeSlotIndexNum = RunData.activeSlot;             // ← восстановили
+        activeSlotIndexNum = RunData.activeSlot;
         ToggleActiveHighlight(activeSlotIndexNum);
-        playerControls.Inventory.Keyboard.performed += ctx => ToggleActiveSlot((int)ctx.ReadValue<float>());
+
+        hotkeyAction.performed += OnHotkey;    
     }
 
-    private void OnEnable()
+    private void OnHotkey(InputAction.CallbackContext ctx) =>
+        ToggleActiveSlot((int)ctx.ReadValue<float>());
+
+    private void OnDestroy()
     {
-        playerControls.Enable();
+        hotkeyAction.performed -= OnHotkey;      
     }
 
-    public void EquipStartingWeapon()
-    {
-        ToggleActiveHighlight(0);
-    }
+    public void EquipStartingWeapon() => ToggleActiveHighlight(0);
 
-    private void ToggleActiveSlot(int numValue)
-    {
-        ToggleActiveHighlight(numValue - 1);
-    }
+    private void ToggleActiveSlot(int numValue) => ToggleActiveHighlight(numValue - 1);
 
     private void ToggleActiveHighlight(int indexNum)
     {
         activeSlotIndexNum = indexNum;
         RunData.activeSlot = activeSlotIndexNum;
 
-        foreach (Transform inventorySlot in this.transform)
-        {
-            inventorySlot.GetChild(0).gameObject.SetActive(false);
-        }
+        foreach (Transform slot in transform)         // гасим все индикаторы
+            slot.GetChild(0).gameObject.SetActive(false);
 
-        this.transform.GetChild(indexNum).GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(indexNum).GetChild(0).gameObject.SetActive(true);
 
-        ChangeActiveWeapon();
+        ChangeActiveWeapon();                         // спавним / меняем оружие
     }
 
     public void ChangeActiveWeapon()
     {
-
         if (ActiveWeapon.Instance.CurrentActiveWeapon != null)
-        {
             Destroy(ActiveWeapon.Instance.CurrentActiveWeapon.gameObject);
-        }
 
-        Transform childTransform = transform.GetChild(activeSlotIndexNum);
-        InventorySlot inventorySlot = childTransform.GetComponentInChildren<InventorySlot>();
-        WeaponInfo weaponInfo = inventorySlot.GetWeaponInfo();
-        GameObject weaponToSpawn = weaponInfo.weaponPrefab;
+        var inventorySlot = transform.GetChild(activeSlotIndexNum)
+                                     .GetComponentInChildren<InventorySlot>();
+        var weaponInfo = inventorySlot.GetWeaponInfo();
 
         if (weaponInfo == null)
         {
@@ -72,17 +70,11 @@ public class ActiveInventory : Singleton<ActiveInventory>
             return;
         }
 
-
-        GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform);
+        var newWeapon = Instantiate(weaponInfo.weaponPrefab, ActiveWeapon.Instance.transform);
         PlayerController.Instance.ApplyAppearance(weaponInfo.playerAnimator);
-
-        //ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
-        //newWeapon.transform.parent = ActiveWeapon.Instance.transform;
-
         ActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
     }
-    public void SelectByPortrait(int slotIndex)
-    {
-        ToggleActiveHighlight(slotIndex);
-    }
+
+    // вызов из UI-портрета
+    public void SelectByPortrait(int slotIndex) => ToggleActiveHighlight(slotIndex);
 }

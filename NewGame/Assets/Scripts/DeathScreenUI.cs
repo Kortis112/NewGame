@@ -23,7 +23,11 @@ public class DeathScreenUI : MonoBehaviour
     // Кнопка «Retry»
     public void Retry()
     {
-        RunData.goldRun = 0;                       // обнуляем золото забега
+        RunData.goldRun = 0;
+        RunData.hpCur = 0;
+        RunData.hpMax = 0;
+        RunData.staminaCur = 0;
+        RunData.activeSlot = 0;                    // обнуляем золото забега
         SceneManager.LoadScene("Fight1");         // загружаем первый бой
     }
 
