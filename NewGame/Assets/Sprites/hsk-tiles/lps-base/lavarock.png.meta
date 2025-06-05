@@ -622,7 +622,27 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      lavarock_0: -4156894962134131338
+      lavarock_1: 7547009598420608399
+      lavarock_10: 4131822091967117582
+      lavarock_11: -5998629185831030666
+      lavarock_12: 6155794104317406603
+      lavarock_13: 4734572554241623148
+      lavarock_14: -2097188863137188112
+      lavarock_15: 9154615224165689403
+      lavarock_16: -1468911627618517637
+      lavarock_17: -1934182683347955752
+      lavarock_18: -548360964563943113
+      lavarock_19: -274437114868223802
+      lavarock_2: -2840441308968170825
+      lavarock_3: -4734575883050963849
+      lavarock_4: 1811696215637689448
+      lavarock_5: 7321920440414853216
+      lavarock_6: 2236017878970952606
+      lavarock_7: 773050253249431719
+      lavarock_8: 7043232012643330570
+      lavarock_9: 4159094732095380483
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

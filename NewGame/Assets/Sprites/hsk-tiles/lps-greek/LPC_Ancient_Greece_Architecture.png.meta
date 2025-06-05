@@ -597,7 +597,26 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LPC_Ancient_Greece_Architecture_0: -8277874130781144914
+      LPC_Ancient_Greece_Architecture_1: 1632641106616754004
+      LPC_Ancient_Greece_Architecture_10: 8132603716829737830
+      LPC_Ancient_Greece_Architecture_11: -6494559112724953515
+      LPC_Ancient_Greece_Architecture_12: -58089719949628974
+      LPC_Ancient_Greece_Architecture_13: -2937465752627336417
+      LPC_Ancient_Greece_Architecture_14: 8027261239068758697
+      LPC_Ancient_Greece_Architecture_15: -7505447283888983178
+      LPC_Ancient_Greece_Architecture_16: -8392195924929924870
+      LPC_Ancient_Greece_Architecture_17: 5236504373600560980
+      LPC_Ancient_Greece_Architecture_18: -2235042869868757733
+      LPC_Ancient_Greece_Architecture_2: -3301773590969759424
+      LPC_Ancient_Greece_Architecture_3: 7336520733977903235
+      LPC_Ancient_Greece_Architecture_4: 7627326744891157133
+      LPC_Ancient_Greece_Architecture_5: 8258603165593448175
+      LPC_Ancient_Greece_Architecture_6: -208953840358439844
+      LPC_Ancient_Greece_Architecture_7: -6089337343238851589
+      LPC_Ancient_Greece_Architecture_8: 8415505151046213918
+      LPC_Ancient_Greece_Architecture_9: -3581154577610975616
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

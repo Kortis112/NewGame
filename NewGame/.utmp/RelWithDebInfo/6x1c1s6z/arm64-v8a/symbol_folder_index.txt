@@ -1,0 +1,1 @@
+C:\Games\NewGame\NewGame\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\6x1c1s6z\obj\arm64-v8a

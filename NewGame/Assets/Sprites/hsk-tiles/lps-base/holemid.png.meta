@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      holemid_0: -7426830078837256341
+      holemid_1: 3805830242801761540
+      holemid_2: 3489732528208950519
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MagicLaser : MonoBehaviour
 {
@@ -64,7 +65,9 @@ public class MagicLaser : MonoBehaviour
             transform.right = StickAttackProxy.AimDir;
         else
             {
-            Vector3 m = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 m = Camera.main.ScreenToWorldPoint(Mouse.current != null
+                    ? Mouse.current.position.ReadValue()
+                    : Vector2.zero);
             transform.right = (m - transform.position).normalized;
             }
     }

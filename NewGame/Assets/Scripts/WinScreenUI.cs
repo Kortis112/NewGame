@@ -29,12 +29,14 @@ public class WinScreenUI : MonoBehaviour
         RunData.staminaCur = 0;
         RunData.activeSlot = 0;
         RunData.runFinished = false;
+        EconomyManager.Instance.ResetRun();
         SceneManager.LoadScene("Fight1");
     }
     public void MainMenu()
     {
         RunData.goldRun = 0;
         RunData.runFinished = false;
+        EconomyManager.Instance.ResetRun();
         SceneManager.LoadScene("MainMenu");
     }
 }

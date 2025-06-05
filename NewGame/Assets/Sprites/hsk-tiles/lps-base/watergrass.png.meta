@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      watergrass_0: 507110579660749318
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -797,7 +797,34 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cabinets_0: -64719530322090483
+      cabinets_1: -8208107730183396275
+      cabinets_10: 315264050853489003
+      cabinets_11: -2800786865607691870
+      cabinets_12: -4262187628116273066
+      cabinets_13: -5924836313652549408
+      cabinets_14: -315411599158590641
+      cabinets_15: 7779543663032676842
+      cabinets_16: -4023812908699945660
+      cabinets_17: -2580142103882979405
+      cabinets_18: -4668774321457962561
+      cabinets_19: 2663939149334435092
+      cabinets_2: -1230670484827411468
+      cabinets_20: 6160255037237233260
+      cabinets_21: 3253969071652443888
+      cabinets_22: 4527440382278261379
+      cabinets_23: -6248128517870975883
+      cabinets_24: 3182497868412749933
+      cabinets_25: 9078020565909742870
+      cabinets_26: -1466455032775125249
+      cabinets_3: 5167113958516533226
+      cabinets_4: 1151009468945943252
+      cabinets_5: -9035694158600668542
+      cabinets_6: 4244326121947651600
+      cabinets_7: 9211646168690293479
+      cabinets_8: 5742650686957145614
+      cabinets_9: 5112451828119714632
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

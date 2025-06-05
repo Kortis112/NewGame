@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      grassalt_0: 1674644345650345200
+      grassalt_1: 7772754203717378491
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

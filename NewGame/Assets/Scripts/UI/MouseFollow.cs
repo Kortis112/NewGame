@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MouseFollow : MonoBehaviour
 {
@@ -13,8 +14,9 @@ public class MouseFollow : MonoBehaviour
 
 
     private void FaceMouse() {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current != null
+                    ? Mouse.current.position.ReadValue()
+                    : Vector2.zero);
 
         Vector2 direction = transform.position - mousePosition;
 

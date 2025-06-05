@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Sword : MonoBehaviour, IWeapon
 {
@@ -90,7 +91,10 @@ public WeaponInfo GetWeaponInfo()
 
     private void MouseFollowWithOffset()
     {
-        Vector3 mousePos = Input.mousePosition;
+        Vector3 mousePos;
+        mousePos = Mouse.current != null
+        ? Mouse.current.position.ReadValue()
+        : Vector2.zero;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position);
 
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;

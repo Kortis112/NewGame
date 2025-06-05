@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -82,25 +83,21 @@ public class PlayerController : Singleton<PlayerController>
 
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }
-
+    private static Vector2 GetMouseScreenPos()
+    {
+        return Mouse.current != null
+            ? Mouse.current.position.ReadValue()
+            : Vector2.zero;
+    }
     private void AdjustPlayerFacingDirection()
     {
-        bool left;
-        if (StickAttackProxy.StickActive)
-            left = StickAttackProxy.AimDir.x < 0f;
-        else
-            left = Input.mousePosition.x < Camera.main.WorldToScreenPoint(transform.position).x;
-        
-        if (left)
-        {
-            mySpriteRender.flipX = true;
-            facingLeft = true;
-        }
-        else
-        {
-            mySpriteRender.flipX = false;
-            facingLeft = false;
-        }
+        bool left = StickAttackProxy.StickActive
+            ? StickAttackProxy.AimDir.x < 0f        // правый стик активен
+            : GetMouseScreenPos().x <               // иначе сравниваем курсор
+              Camera.main.WorldToScreenPoint(transform.position).x;
+
+        mySpriteRender.flipX = left;
+        facingLeft = left;
     }
 
     private void Dash()

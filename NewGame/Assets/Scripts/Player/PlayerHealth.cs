@@ -14,9 +14,8 @@ public class PlayerHealth : Singleton<PlayerHealth>
     [SerializeField] private int maxHealth = 3;
     [SerializeField] private float knockBackThrustAmount = 10f;
     [SerializeField] private float damageRecoveryTime = 1f;
-
-
-    private Slider healthSlider;
+    [Header("UI")]
+    [SerializeField] private Slider healthSlider;
     private int currentHealth;
     private bool canTakeDamage = true;
     private Knockback knockback;
@@ -119,6 +118,8 @@ public class PlayerHealth : Singleton<PlayerHealth>
         if (healthSlider == null)
         {
             healthSlider = GameObject.Find(HEALTH_SLIDER_TEXT).GetComponent<Slider>();
+            Debug.LogWarning("Health slider reference missing!");
+
         }
 
         healthSlider.maxValue = maxHealth;

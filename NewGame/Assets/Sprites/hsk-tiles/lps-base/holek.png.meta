@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      holek_0: -5014238502105186073
+      holek_1: 6401255024622138006
+      holek_2: 1423278644219805013
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

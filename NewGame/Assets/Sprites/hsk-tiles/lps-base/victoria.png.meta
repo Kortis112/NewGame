@@ -472,7 +472,21 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      victoria_0: 691905212622998910
+      victoria_1: 2590051470947856320
+      victoria_10: -2959351387344002648
+      victoria_11: -6208081067047618981
+      victoria_12: 2767669021759743687
+      victoria_13: 5410033755156955201
+      victoria_2: -7012085070685746706
+      victoria_3: 8847779640038546400
+      victoria_4: 6778116084755845092
+      victoria_5: 7590066447146493733
+      victoria_6: -5222508409296595901
+      victoria_7: 6374672493093521189
+      victoria_8: 7652944877810542367
+      victoria_9: 4206080934786340599
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

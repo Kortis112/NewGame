@@ -27,11 +27,16 @@ public class DeathScreenUI : MonoBehaviour
         RunData.hpCur = 0;
         RunData.hpMax = 0;
         RunData.staminaCur = 0;
-        RunData.activeSlot = 0;                    // обнуляем золото забега
+        RunData.activeSlot = 0;
+        EconomyManager.Instance.ResetRun();// обнуляем золото забега
         SceneManager.LoadScene("Fight1");         // загружаем первый бой
     }
 
     // Кнопка «Main Menu»
-    public void GoMainMenu() =>
+    public void GoMainMenu()
+    {
+        EconomyManager.Instance.ResetRun();
         SceneManager.LoadScene("MainMenu");
+    }
+        
 }
