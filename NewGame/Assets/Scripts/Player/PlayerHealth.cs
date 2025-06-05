@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Game.Systems;
+using static Unity.Collections.Unicode;
 
 public class PlayerHealth : Singleton<PlayerHealth>
 {
     public bool isDead { get; private set; }
+    protected override bool PersistBetweenScenes => false;
 
     [SerializeField] private int maxHealth = 3;
     [SerializeField] private float knockBackThrustAmount = 10f;
     [SerializeField] private float damageRecoveryTime = 1f;
+
 
     private Slider healthSlider;
     private int currentHealth;
@@ -33,7 +37,12 @@ public class PlayerHealth : Singleton<PlayerHealth>
     private void Start()
     {
         isDead = false;
-        currentHealth = maxHealth;
+        if (RunData.hpCur == 0)          // новый забег
+            currentHealth = maxHealth;
+        else                             // продолжаем
+            currentHealth = RunData.hpCur;
+        
+        maxHealth = RunData.hpMax == 0 ? maxHealth : RunData.hpMax;
 
         UpdateHealthSlider();
     }
@@ -54,6 +63,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         {
             currentHealth += 1;
             UpdateHealthSlider();
+            RunData.hpCur = currentHealth;
         }
     }
 
@@ -66,6 +76,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         StartCoroutine(flash.FlashRoutine());
         canTakeDamage = false;
         currentHealth -= damageAmount;
+        RunData.hpCur = currentHealth;
         StartCoroutine(DamageRecoveryRoutine());
         UpdateHealthSlider();
         CheckIfPlayerDeath();
@@ -82,12 +93,19 @@ public class PlayerHealth : Singleton<PlayerHealth>
             StartCoroutine(DeathLoadSceneRoutine());
         }
     }
-
+    private void OnDisable()
+    {
+        RunData.hpCur = currentHealth;
+        RunData.hpMax = maxHealth;
+    }
     private IEnumerator DeathLoadSceneRoutine()
     {
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
-        SceneManager.LoadScene(TOWN_TEXT);
+        RunData.goldRun = EconomyManager.Instance.CurrentGold;
+        int runs = PlayerPrefs.GetInt("RunsTotal", 0) + 1;
+        PlayerPrefs.SetInt("RunsTotal", runs);
+        SceneManager.LoadScene("DeathScene");
     }
 
     private IEnumerator DamageRecoveryRoutine()

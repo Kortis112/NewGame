@@ -5,8 +5,12 @@ using UnityEngine;
 public class MouseFollow : MonoBehaviour
 {
     private void Update() {
+        if (ActiveWeapon.Instance.attackHeldByStick)  // פכאד טח StickAttackProxy
+            return;
         FaceMouse();
+
     }
+
 
     private void FaceMouse() {
         Vector3 mousePosition = Input.mousePosition;

@@ -1,26 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
     private static T instance;
-    public static T Instance { get { return instance; } }
+    public static T Instance => instance;
+
+   // ← по умолчанию true, но потом можно переопределить
+   protected virtual bool PersistBetweenScenes => true;
 
     protected virtual void Awake()
     {
         if (instance != null && this.gameObject != null)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            instance = (T)this;
-        }
+        instance = (T)this;
 
-        if (!gameObject.transform.parent)
-        {
+        if (PersistBetweenScenes && !transform.parent)
             DontDestroyOnLoad(gameObject);
-        }
     }
 }

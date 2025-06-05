@@ -1,15 +1,19 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ActiveWeapon : Singleton<ActiveWeapon>
 {
+    protected override bool PersistBetweenScenes => false;
     public MonoBehaviour CurrentActiveWeapon { get; private set; }
 
     private PlayerControls playerControls;
     private float timeBetweenAttacks;
 
-    private bool attackButtonDown, isAttacking = false;
+    private bool attackButtonDown;      // LMB / кнопка «Attack»
+    public bool attackHeldByStick;     // ← новый флаг от правого стика
+    private bool isAttacking;
+
 
     protected override void Awake()
     {
@@ -74,10 +78,11 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
 
     private void Attack()
     {
-        if (attackButtonDown && !isAttacking && CurrentActiveWeapon)
+        if ((attackButtonDown || attackHeldByStick) && !isAttacking && CurrentActiveWeapon)
         {
             AttackCooldown();
             (CurrentActiveWeapon as IWeapon).Attack();
         }
     }
+
 }

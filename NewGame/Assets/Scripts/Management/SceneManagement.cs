@@ -9,5 +9,6 @@ public class SceneManagement : Singleton<SceneManagement>
     public void SetTransitionName(string sceneTransitionName) {
         this.SceneTransitionName = sceneTransitionName;
     }
+
 }
 

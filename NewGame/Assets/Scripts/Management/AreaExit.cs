@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Systems;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,7 @@ public class AreaExit : MonoBehaviour
 {
     [SerializeField] private string sceneToLoad;
     [SerializeField] private string sceneTransitionName;
+    [SerializeField] private int portalIndex;
 
     private float waitToLoadTime = 1f;
 
@@ -28,6 +30,8 @@ public class AreaExit : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene(sceneToLoad);
+        RunData.currentNode = RunData.graph.chain[RunData.currentNode].next[portalIndex];
+        string nextScene = RunData.graph.chain[RunData.currentNode].scene;
+        SceneManager.LoadScene(nextScene);
     }
 }

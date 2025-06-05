@@ -27,10 +27,29 @@ public class Sword : MonoBehaviour, IWeapon
 
     private void Update()
     {
-        MouseFollowWithOffset();
+        if (StickAttackProxy.StickActive)
+            StickFollow();          // поворот по стику
+        else
+            MouseFollowWithOffset();
     }
 
-    public WeaponInfo GetWeaponInfo()
+    private void StickFollow()
+{
+    Vector2 dir = StickAttackProxy.AimDir;
+    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+    bool left = dir.x < 0f;
+    ActiveWeapon.Instance.transform.rotation =
+        left? Quaternion.Euler(0, -180, angle)
+             : Quaternion.Euler(0,    0, angle);
+
+    // коллайдер тоже разворачиваем
+    weaponCollider.transform.rotation =
+        left? Quaternion.Euler(0, -180, 0)
+            : Quaternion.Euler(0,    0, 0);
+}
+
+public WeaponInfo GetWeaponInfo()
     {
         return weaponInfo;
     }

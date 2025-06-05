@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : Singleton<PlayerController>
 {
     public bool FacingLeft { get { return facingLeft; } }
+    protected override bool PersistBetweenScenes => false;
 
 
     [SerializeField] private float moveSpeed = 1f;
@@ -39,8 +40,6 @@ public class PlayerController : Singleton<PlayerController>
         playerControls.Combat.Dash.performed += _ => Dash();
 
         startingMoveSpeed = moveSpeed;
-
-        ActiveInventory.Instance.EquipStartingWeapon();
     }
 
     private void OnEnable()
@@ -86,10 +85,13 @@ public class PlayerController : Singleton<PlayerController>
 
     private void AdjustPlayerFacingDirection()
     {
-        Vector3 mousePos = Input.mousePosition;
-        Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(transform.position);
-
-        if (mousePos.x < playerScreenPoint.x)
+        bool left;
+        if (StickAttackProxy.StickActive)
+            left = StickAttackProxy.AimDir.x < 0f;
+        else
+            left = Input.mousePosition.x < Camera.main.WorldToScreenPoint(transform.position).x;
+        
+        if (left)
         {
             mySpriteRender.flipX = true;
             facingLeft = true;

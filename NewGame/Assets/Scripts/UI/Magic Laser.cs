@@ -19,7 +19,7 @@ public class MagicLaser : MonoBehaviour
 
     private void Start()
     {
-        LaserFaceMouse();
+        Face();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -58,11 +58,14 @@ public class MagicLaser : MonoBehaviour
         StartCoroutine(GetComponent<SpriteFade>().SlowFadeRoutine());
     }
 
-    private void LaserFaceMouse()
+    private void Face()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        Vector2 direction = transform.position - mousePosition;
-        transform.right = -direction;
+        if (StickAttackProxy.StickActive)
+            transform.right = StickAttackProxy.AimDir;
+        else
+            {
+            Vector3 m = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.right = (m - transform.position).normalized;
+            }
     }
 }

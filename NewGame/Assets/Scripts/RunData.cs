@@ -1,16 +1,17 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class RunData : MonoBehaviour
+namespace Game.Systems
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    /// <summary>Данные одного забега – живут пока открыт Play-сценарий.</summary>
+    public static class RunData
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public static int goldRun;          // золото, набраное за текущий забег
+        public static int currentNode;      // индекс активной ноды графа
+        public static NodeGraph graph;      // сгенерированный маршрут комнат
+        public static int hpCur;
+        public static int hpMax;
+        public static int staminaCur;
+        public static int activeSlot;    // 0-based
+        public static bool runFinished;
     }
 }

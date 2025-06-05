@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Systems;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class Stamina : Singleton<Stamina>
 
     [SerializeField] private Sprite fullStaminaImage, emptyStaminaImage;
     [SerializeField] private int timeBetweenStaminaRefresh = 3;
+    protected override bool PersistBetweenScenes => false;
 
     private Transform staminaContainer;
     private int startingStamina = 3;
@@ -19,7 +21,7 @@ public class Stamina : Singleton<Stamina>
         base.Awake();
 
         maxStamina = startingStamina;
-        CurrentStamina = startingStamina;
+        CurrentStamina = RunData.staminaCur == 0 ? startingStamina : RunData.staminaCur;
     }
 
     private void Start() {
@@ -28,6 +30,7 @@ public class Stamina : Singleton<Stamina>
 
     public void UseStamina() {
         CurrentStamina--;
+        RunData.staminaCur = CurrentStamina;
         UpdateStaminaImages();
     }
 
@@ -60,5 +63,9 @@ public class Stamina : Singleton<Stamina>
             StopAllCoroutines();
             StartCoroutine(RefreshStaminaRoutine());
         }
+    }
+    private void OnDisable()
+    {
+        RunData.staminaCur = CurrentStamina;     // запоминаем
     }
 }

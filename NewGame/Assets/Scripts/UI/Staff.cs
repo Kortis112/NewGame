@@ -19,10 +19,22 @@ public class Staff : MonoBehaviour, IWeapon
 
     private void Update()
     {
-        MouseFollowWithOffset();
+        if (StickAttackProxy.StickActive)
+            StickFollow();
+        else
+            MouseFollowWithOffset();
     }
 
+    private void StickFollow()
+    {
+    Vector2 dir = StickAttackProxy.AimDir;
+    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
+    if (dir.x< 0)
+        ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, -180, angle);
+    else
+        ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
     public void Attack()
     {
         myAnimator.SetTrigger(ATTACK_HASH);
@@ -41,6 +53,8 @@ public class Staff : MonoBehaviour, IWeapon
 
     private void MouseFollowWithOffset()
     {
+        if (StickAttackProxy.StickActive)
+            return;
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position);
 

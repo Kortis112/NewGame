@@ -1,5 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Game.Systems;
 using UnityEngine;
 
 public class ActiveInventory : Singleton<ActiveInventory>
@@ -7,7 +8,7 @@ public class ActiveInventory : Singleton<ActiveInventory>
     private int activeSlotIndexNum = 0;
 
     private PlayerControls playerControls;
-
+    protected override bool PersistBetweenScenes => false;
     protected override void Awake()
     {
         base.Awake();
@@ -17,6 +18,8 @@ public class ActiveInventory : Singleton<ActiveInventory>
 
     private void Start()
     {
+        activeSlotIndexNum = RunData.activeSlot;             // ← восстановили
+        ToggleActiveHighlight(activeSlotIndexNum);
         playerControls.Inventory.Keyboard.performed += ctx => ToggleActiveSlot((int)ctx.ReadValue<float>());
     }
 
@@ -38,6 +41,7 @@ public class ActiveInventory : Singleton<ActiveInventory>
     private void ToggleActiveHighlight(int indexNum)
     {
         activeSlotIndexNum = indexNum;
+        RunData.activeSlot = activeSlotIndexNum;
 
         foreach (Transform inventorySlot in this.transform)
         {
@@ -49,7 +53,7 @@ public class ActiveInventory : Singleton<ActiveInventory>
         ChangeActiveWeapon();
     }
 
-    private void ChangeActiveWeapon()
+    public void ChangeActiveWeapon()
     {
 
         if (ActiveWeapon.Instance.CurrentActiveWeapon != null)
@@ -76,5 +80,9 @@ public class ActiveInventory : Singleton<ActiveInventory>
         //newWeapon.transform.parent = ActiveWeapon.Instance.transform;
 
         ActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
+    }
+    public void SelectByPortrait(int slotIndex)
+    {
+        ToggleActiveHighlight(slotIndex);
     }
 }
